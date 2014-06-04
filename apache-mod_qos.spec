@@ -12,6 +12,9 @@ Source1:	%{name}.conf
 URL:		http://opensource.adnovum.ch/mod_qos/
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0.0
+BuildRequires:	libpng-devel
+BuildRequires:	openssl-devel
+BuildRequires:	pcre-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	apache(modules-api) = %apache_modules_api
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -34,7 +37,9 @@ cd tools
 %{__autoconf}
 %{__automake}
 %configure \
-	--with-apxs=%{apxs}
+	--with-pcre=%{_bindir} \
+	--with-png=%{_bindir} \
+	--with-ssl=%{_prefix}
 %{__make}
 cd ..
 
