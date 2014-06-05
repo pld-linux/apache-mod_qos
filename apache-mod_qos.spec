@@ -12,6 +12,7 @@ Source1:	%{name}.conf
 URL:		http://opensource.adnovum.ch/mod_qos/
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0.0
+BuildRequires:	autoconf
 BuildRequires:	libpng-devel
 BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
