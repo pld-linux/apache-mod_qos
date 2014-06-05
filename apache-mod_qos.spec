@@ -19,8 +19,8 @@ BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	apache(modules-api) = %apache_modules_api
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		apacheconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)/conf.d
-%define		apachelibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
+%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
+%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)/conf.d
 
 %description
 mod_qos is a quality of service module for the Apache Web Server. It
@@ -47,13 +47,12 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{apachelibdir},%{apacheconfdir}}
-
+install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}}
 %{__make} -C tools install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-cp -p .libs/mod_%{mod_name}.so $RPM_BUILD_ROOT%{apachelibdir}
-cp -p %{SOURCE1} $RPM_BUILD_ROOT%{apacheconfdir}/97_mod_%{mod_name}.conf
+install -p .libs/mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/97_mod_%{mod_name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -69,6 +68,17 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc doc/*
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{apacheconfdir}/*mod_*.conf
-%attr(755,root,root) %{apachelibdir}/*.so
-%attr(755,root,root) %{_bindir}/qs*
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*_mod_%{mod_name}.conf
+%attr(755,root,root) %{_pkglibdir}/mod_%{mod_name}.so
+%attr(755,root,root) %{_bindir}/qscheck
+%attr(755,root,root) %{_bindir}/qsexec
+%attr(755,root,root) %{_bindir}/qsfilter2
+%attr(755,root,root) %{_bindir}/qsgeo
+%attr(755,root,root) %{_bindir}/qsgrep
+%attr(755,root,root) %{_bindir}/qshead
+%attr(755,root,root) %{_bindir}/qslog
+%attr(755,root,root) %{_bindir}/qslogger
+%attr(755,root,root) %{_bindir}/qspng
+%attr(755,root,root) %{_bindir}/qsrotate
+%attr(755,root,root) %{_bindir}/qssign
+%attr(755,root,root) %{_bindir}/qstail
