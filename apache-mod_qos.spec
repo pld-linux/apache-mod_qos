@@ -3,7 +3,7 @@
 Summary:	Apache module: Quality Of Service
 Name:		apache-mod_%{mod_name}
 Version:	11.1
-Release:	1
+Release:	2
 License:	Apache
 Group:		Networking/Daemons/HTTP
 Source0:	https://downloads.sourceforge.net/project/mod-qos/mod_qos-%{version}.tar.gz
