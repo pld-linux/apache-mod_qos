@@ -2,12 +2,12 @@
 %define 	apxs		/usr/sbin/apxs
 Summary:	Apache module: Quality Of Service
 Name:		apache-mod_%{mod_name}
-Version:	11.1
-Release:	2
+Version:	11.57
+Release:	1
 License:	Apache
 Group:		Networking/Daemons/HTTP
 Source0:	https://downloads.sourceforge.net/project/mod-qos/mod_qos-%{version}.tar.gz
-# Source0-md5:	286d2d2b2f5abae9ccc48fa58f17dda1
+# Source0-md5:	d8c1d9ba4d46bbccde19a003dc864a0c
 Source1:	%{name}.conf
 URL:		http://opensource.adnovum.ch/mod_qos/
 BuildRequires:	%{apxs}
@@ -72,6 +72,7 @@ fi
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*_mod_%{mod_name}.conf
 %attr(755,root,root) %{_pkglibdir}/mod_%{mod_name}.so
 %attr(755,root,root) %{_bindir}/qscheck
+%attr(755,root,root) %{_bindir}/qsdt
 %attr(755,root,root) %{_bindir}/qsexec
 %attr(755,root,root) %{_bindir}/qsfilter2
 %attr(755,root,root) %{_bindir}/qsgeo
@@ -80,6 +81,8 @@ fi
 %attr(755,root,root) %{_bindir}/qslog
 %attr(755,root,root) %{_bindir}/qslogger
 %attr(755,root,root) %{_bindir}/qspng
+%attr(755,root,root) %{_bindir}/qsre
+%attr(755,root,root) %{_bindir}/qsrespeed
 %attr(755,root,root) %{_bindir}/qsrotate
 %attr(755,root,root) %{_bindir}/qssign
 %attr(755,root,root) %{_bindir}/qstail
