@@ -2,12 +2,12 @@
 %define 	apxs		/usr/sbin/apxs
 Summary:	Apache module: Quality Of Service
 Name:		apache-mod_%{mod_name}
-Version:	11.76
+Version:	11.80
 Release:	1
 License:	Apache
 Group:		Networking/Daemons/HTTP
 Source0:	https://downloads.sourceforge.net/project/mod-qos/mod_qos-%{version}.tar.gz
-# Source0-md5:	8fc6eee1bf6051621881568e149e1520
+# Source0-md5:	cf7703443571b1ad03197894e735dbd7
 Source1:	%{name}.conf
 URL:		http://opensource.adnovum.ch/mod_qos/
 BuildRequires:	%{apxs}
